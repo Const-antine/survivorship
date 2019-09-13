@@ -1,0 +1,27 @@
+Here is an Even rule in a JSON format which I have used in my case. As "instance-id", feel free to specify the instances which should be running all the time. Once any of them is terminated, the lambda function will be invoked and it will create a whole new architecture in another ( "safe") region. Then, you may switch a Route53 for example to a new location and all the systems will be "alive" again. 
+
+Also, you will need to specify a lambda function as a target for this event in Cloudwatch
+
+
+{
+  "source": [
+    "aws.ec2"
+  ],
+  "detail-type": [
+    "EC2 Instance State-change Notification"
+  ],
+  "detail": {
+    "state": [
+      "terminated"
+    ],
+    "instance-id": [
+      "123456",
+      "654321",
+      "321456"
+    ]
+  }
+}
+
+
+
+
